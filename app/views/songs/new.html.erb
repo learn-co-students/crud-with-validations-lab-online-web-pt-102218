@@ -1,0 +1,13 @@
+<%= form_tag songs_path, method: "POST" do %> 
+    <%= label_tag "title", "Title" %>
+    <%= text_field_tag "song[title]" %>
+    <%= label_tag "released", "Released" %>
+    <%= text_field_tag "song[released]" %>
+    <%= label_tag "release_year", "Release Year" %>
+    <%= text_field_tag "song[release_year]" %>
+    <%= label_tag "artist_name", "Artist Name" %>
+    <%= text_field_tag "song[artist_name]" %>
+    <%= label_tag "genre", "Genre" %>
+    <%= text_field_tag "song[genre]" %> 
+    <%= submit_tag "Create" %> 
+<% end %>
