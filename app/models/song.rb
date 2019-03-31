@@ -1,14 +1,7 @@
-class MyValidator < ActiveModel::Validator
-    def validate(song)
-        binding.pry
-        if Song.all.include?(song.title) && Song.all.include?(song.release_year)
-            song.errors[:title] << 'invalid' 
-        end
-    end
-end
-
-
 class Song < ApplicationRecord
     validates :title, presence: true
-    validates_with MyValidator
+    validates :title, uniqueness: true
+    validates :release_year, presence: true
+    validates :release_year, absence: true
+    validates :released, inclusion: {in: [true, false]}
 end
