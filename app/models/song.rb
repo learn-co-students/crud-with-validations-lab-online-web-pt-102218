@@ -1,5 +1,5 @@
 class Song < ApplicationRecord
-    validates :title, presence: true
+    validates :title, presence: true, uniqueness: true
     validates :released, inclusion: { in: [true, false] }
     validate :valid_release_year?  
     validates :artist_name, presence: true 
@@ -7,12 +7,13 @@ class Song < ApplicationRecord
 end
 
 def valid_release_year?
-   
-   if self.released == false && self.released != true 
-     true 
-   elsif self.release_year.try(:release_year).nil? == false && self.release_year <= Date.current.year 
-     true 
+  
+   if self.released == false 
+     
+   elsif self.release_year.nil? == false && self.release_year <= Date.current.year 
+     
    else 
-    false 
+    errors.add(:release_year) 
    end
+  
 end
