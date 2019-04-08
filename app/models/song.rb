@@ -8,10 +8,9 @@ end
 
 def valid_release_year?
    
-   if self.released == false 
+   if self.released == false && self.released != true 
      true 
-    
-   elsif self.release_year != nil && self.release_year <= Date.current.year 
+   elsif self.release_year.try(:release_year).nil? == false && self.release_year <= Date.current.year 
      true 
    else 
     false 
